@@ -1,5 +1,6 @@
 package com.example.odontopharmacenterdias.entities;
 
+import com.example.odontopharmacenterdias.entities.enums.Gender;
 import jakarta.persistence.*;
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package com.example.odontopharmacenterdias.entities;
+package com.example.odontopharmacenterdias.entities.enums;
 
 public enum PaymentMethod {
     CASH,

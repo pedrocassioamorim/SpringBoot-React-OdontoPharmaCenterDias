@@ -1,9 +1,8 @@
 package com.example.odontopharmacenterdias.infraestructure.dtos;
 
 import com.example.odontopharmacenterdias.entities.Dentist;
-import com.example.odontopharmacenterdias.entities.Gender;
+import com.example.odontopharmacenterdias.entities.enums.Gender;
 import lombok.Data;
-import lombok.Value;
 
 import java.io.Serializable;
 

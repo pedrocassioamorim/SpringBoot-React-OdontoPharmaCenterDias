@@ -1,6 +1,6 @@
 package com.example.odontopharmacenterdias.infraestructure.dtos;
 
-import com.example.odontopharmacenterdias.entities.PaymentMethod;
+import com.example.odontopharmacenterdias.entities.enums.PaymentMethod;
 import com.example.odontopharmacenterdias.entities.Sale;
 import com.example.odontopharmacenterdias.entities.SaleItem;
 import lombok.Data;

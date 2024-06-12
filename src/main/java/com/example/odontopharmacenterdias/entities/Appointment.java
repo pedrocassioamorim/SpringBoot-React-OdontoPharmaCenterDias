@@ -1,5 +1,6 @@
 package com.example.odontopharmacenterdias.entities;
 
+import com.example.odontopharmacenterdias.entities.enums.StatusOfAppointment;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;

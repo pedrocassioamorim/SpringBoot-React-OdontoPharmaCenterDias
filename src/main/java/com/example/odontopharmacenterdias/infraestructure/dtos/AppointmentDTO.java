@@ -1,6 +1,7 @@
 package com.example.odontopharmacenterdias.infraestructure.dtos;
 
 import com.example.odontopharmacenterdias.entities.*;
+import com.example.odontopharmacenterdias.entities.enums.StatusOfAppointment;
 import lombok.Data;
 
 import java.util.Date;
