@@ -7,6 +7,7 @@ import org.hibernate.proxy.HibernateProxy;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -32,6 +33,20 @@ public class Sale implements Serializable {
     @ManyToOne
     private Employee employee; // Foreign key to the employees table, identifying the employee who served the customer. (Long)
 
+    @ManyToMany
+    private List<SaleItem> items; // List of sale items;
+
+    private Double discount; // Discount value applied to the sale (if applicable). (Decimal)
+
+    private Double totalAmount = items.stream()  // Total sale amount (sum of the total prices of the sale items - discount). (Decimal)
+                                .mapToDouble(SaleItem::getTotalPrice) // Convert to a DoubleStream
+                                .sum(); // Calculate the sum of the stream
+
+    @Column(name = "payment_method")
+    private String paymentMethod; //Payment method used for the sale (cash, debit card, credit card, etc.). (String)
+
+    @Column(name = "payment_receipt")
+    private String paymentReceipt; // Payment Receipt for this sale (String);
 
 
 
