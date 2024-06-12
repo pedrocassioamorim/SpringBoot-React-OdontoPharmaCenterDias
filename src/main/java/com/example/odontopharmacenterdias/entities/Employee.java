@@ -23,10 +23,12 @@ public class Employee implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id; // Primary key, unique identifier for each employee. (Long)
 
+    @Column(nullable = false)
     private String name; // Full name of the employee. (String)
 
     private Date birthDay; // Employee's date of birth. (Date)
 
+    @Column(unique = true, nullable = false)
     private String cpf; // Brazilian Social Security Number (CPF) of the employee. (String)
 
     private Gender gender; // Employee's gender (male, female, other). (Enum)
