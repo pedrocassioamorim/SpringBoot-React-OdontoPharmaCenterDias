@@ -24,7 +24,7 @@ public class Costumer implements Serializable {
     private Long id; // Primary key, unique identifier for each customer. (Long)
 
     @Column(nullable = false)
-    private String Name; // Full name of the customer. (String)
+    private String name; // Full name of the customer. (String)
 
     @Column(name = "birth_day")
     private Date birthDay; // Customer's date of birth. (Date)
