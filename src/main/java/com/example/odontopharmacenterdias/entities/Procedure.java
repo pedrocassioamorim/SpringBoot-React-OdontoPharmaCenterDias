@@ -35,6 +35,8 @@ public class Procedure implements Serializable {
     @Column(name = "date_of_procedure")
     private Date dateOfProcedure; // Date of procedure. (Date)
 
+    private Boolean isPaid; // Is the Procedure already paid? (Boolean)
+
 
     @Override
     public final boolean equals(Object o) {

@@ -1,12 +1,13 @@
 package com.example.odontopharmacenterdias.entities;
 
+
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,75 +16,74 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class Sale implements Serializable {
+public class Payment implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Long id; // Primary key, unique identifier for each sale. (Long)
+    private Long id; // Unique identifier for the payment (Long)
 
-    @Column(name = "sale_date")
-    private Date saleDate; // Date and time of the sale. (Date)
-
-    @ManyToOne
-    private Costumer costumer; // Foreign key to the customers table, identifying the customer who made the purchase. (Long)
+    @OneToOne
+    private Costumer costumer; // Reference to the customer associated with the payment (Long)
 
     @ManyToOne
-    private Employee employee; // Foreign key to the employees table, identifying the employee who served the customer. (Long)
+    private TreatmentPlan treatmentPlan; // Reference to the treatment plan related to the payment (Long)
 
     @ManyToMany
-    private List<SaleItem> items; // List of sale items;
+    private List<Procedure> procedureList; // List of procedures included in the payment (List<Procedure>)
 
-    private Double discount; // Discount value applied to the sale (if applicable). (Decimal)
-
-    private Double totalAmount = items.stream()  // Total sale amount (sum of the total prices of the sale items - discount). (Decimal)
-                                .mapToDouble(SaleItem::getTotalPrice) // Convert to a DoubleStream
-                                .sum(); // Calculate the sum of the stream
+    private Double total = total(); // Total amount of the payment (Double)
 
     @Column(name = "payment_method") @Enumerated(EnumType.STRING)
-    private PaymentMethod paymentMethod; // Payment method used for the sale (cash, debit card, credit card, etc.). (Enum/String)
+    private PaymentMethod paymentMethod; // Payment method used for the service (cash, debit card, credit card, etc.). (Enum/String)
 
-    @Column(name = "payment_receipt")
-    private String paymentReceipt; // Payment Receipt for this sale (String);
+    private Date paymentDate; // Date the payment was made (Date)
 
+    private String paymentReceipt = generatePaymentReceipts(); // Auto generating payment receipts based on payment methods;
 
+    public Double total(){
+        Double total = 0.0;
+        for (Procedure procedure : procedureList){
+            total += procedure.getCost();
+        }
+        return total;
+    }
 
     public String generatePaymentReceipts(){
         if (paymentMethod.equals("PIX")){
             // Generate receipt content specific to PIX Payment
             return "Name: " + costumer.getName() + "\n"
-                    + "Value: R$ " + totalAmount + "\n"
+                    + "Value: R$ " + total() + "\n"
                     + " PIX RECEBIDO COM SUCESSO!";
         } else if (paymentMethod.equals("CREDITCARD")) {
             // Generate receipt content specific to Credit Card Payment
             return "Name: " + costumer.getName() + "\n"
-                    + "Value: R$ " + totalAmount + "\n"
+                    + "Value: R$ " + total() + "\n"
                     + "CREDIT CARD RECEBIDO COM SUCESSO!";
         } else if (paymentMethod.equals("DEBITCARD")) {
             // Generate receipt content specific to Debit Card Payment
             return "Name: " + costumer.getName() + "\n"
-                    + "Value: R$ " + totalAmount + "\n"
+                    + "Value: R$ " + total() + "\n"
                     + "DEBIT CARD RECEBIDO COM SUCESSO!";
         } else if (paymentMethod.equals("CASH")) {
             // Generate receipt content specific to Cash Payment
             return "Name: " + costumer.getName() + "\n"
-                    + "Value: R$ " + totalAmount + "\n"
+                    + "Value: R$ " + total() + "\n"
                     + "CASH RECEBIDO COM SUCESSO!";
         } else if (paymentMethod.equals("PLANO")) {
             // Generate receipt content specific to Credit Card Payment
             return "Name: " + costumer.getName() + "\n"
-                    + "Value: R$ " + totalAmount + "\n"
+                    + "Value: R$ " + total() + "\n"
                     + "PLANO DE SAUDE RECEBIDO COM SUCESSO!";
         } else {
             // Generate receipt content specific to Credit Card Payment
             return "Name: " + costumer.getName() + "\n"
-                    + "Value: R$ " + totalAmount + "\n"
+                    + "Value: R$ " + total() + "\n"
                     + "SUS PHARMACIA POPULAR RECEBIDO COM SUCESSO!";
         }
     }
-
 
     @Override
     public final boolean equals(Object o) {
@@ -92,8 +92,8 @@ public class Sale implements Serializable {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Sale sale = (Sale) o;
-        return getId() != null && Objects.equals(getId(), sale.getId());
+        Payment payment = (Payment) o;
+        return getId() != null && Objects.equals(getId(), payment.getId());
     }
 
     @Override
