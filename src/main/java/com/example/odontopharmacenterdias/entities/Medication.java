@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -14,6 +15,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class Medication implements Serializable {
 
+    @Serial
     private static final long SerialVersionUID = 1L;
 
     @Id
