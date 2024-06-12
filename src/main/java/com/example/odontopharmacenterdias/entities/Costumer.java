@@ -23,18 +23,43 @@ public class Costumer implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id; // Primary key, unique identifier for each customer. (Long)
 
+    @Column(nullable = false)
     private String Name; // Full name of the customer. (String)
 
     @Column(name = "birth_day")
     private Date birthDay; // Customer's date of birth. (Date)
 
+    @Column(nullable = false, unique = true)
     private String cpf; // Brazilian Social Security Number (CPF) of the customer. (String)
+
+    private String rg; // Brazilian Identity Card (RG) number of the patient. (String)
+
+    private Gender gender; // Patient's gender (male, female, other). (Enum)
 
     private String address; // Complete address of the customer (street, number, neighborhood, city, state, ZIP code). (String)
 
     private String phone; // Customer's phone number. (String)
 
+    private String email; // Patient's email address. (String)
+
+    private String maritalStatus; // Patient's marital status (single, married, divorced, widowed). (String)
+
+    private String ocupation; // Patient's occupation. (String)
+
     private String health_insurance; // Name of the customer's health insurance plan (SUS and/or other if applicable). (String)
+
+    private String allergies; // List of patient's allergies (if any). (String)
+
+    @Column(name = "medications_used")
+    private String medicationsUsed; // List of medications the patient is using (if any). (String)
+
+    @Column(name = "medical_history")
+    private String medicalHistory; // Patient's medical history. (String)
+
+    @Column(name = "dental_clinical_chart")
+    private String dentalClinicalChart; // Patient's dental clinical chart (String)
+
+    private String notes; // Relevant notes about the patient. (String)
 
 
 

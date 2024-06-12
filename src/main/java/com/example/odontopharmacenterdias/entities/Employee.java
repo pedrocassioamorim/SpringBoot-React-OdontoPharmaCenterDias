@@ -29,6 +29,10 @@ public class Employee implements Serializable {
 
     private String cpf; // Brazilian Social Security Number (CPF) of the employee. (String)
 
+    private Gender gender; // Employee's gender (male, female, other). (Enum)
+
+    private String maritalStatus; // Employee's marital status (single, married, divorced, widowed). (String)
+
     private String address; //  Complete address of the employee (street, number, neighborhood, city, state, ZIP code). (String)
 
     private String phone; // Employee's phone number. (String)
