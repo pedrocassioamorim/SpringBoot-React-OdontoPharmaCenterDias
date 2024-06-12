@@ -34,7 +34,7 @@ public class TreatmentPlanDTO {
         List<ProcedureDTO> dtos = new ArrayList<>();
         for (Procedure procedure : procedures){
             ProcedureDTO dto = new ProcedureDTO();
-            dto.getDTOfromEntity(procedure);
+            dto = dto.getDTOfromEntity(procedure);
             dtos.add(dto);
         }
         return dtos;

@@ -17,15 +17,16 @@ public class AppointmentDTO {
     StatusOfAppointment status;
     String notes;
 
-    public AppointmentDTO(Appointment appointment){
-        this.id = appointment.getId();
-        this.timestamp = appointment.getTimestamp();
-        this.costumer = new CostumerDTO().getDTOfromEntity(appointment.getCostumer());
-        this.dentist = new DentistDTO().getDTOfromEntity(appointment.getDentist());
-        this.speciality = appointment.getSpeciality();
-        this.status = appointment.getStatus();
-        this.notes = appointment.getNotes();
-
+    public AppointmentDTO getDTOfromEntity (Appointment appointment){
+        AppointmentDTO dto = new AppointmentDTO();
+        dto.id = appointment.getId();
+        dto.timestamp = appointment.getTimestamp();
+        dto.costumer = new CostumerDTO().getDTOfromEntity(appointment.getCostumer());
+        dto.dentist = new DentistDTO().getDTOfromEntity(appointment.getDentist());
+        dto.speciality = appointment.getSpeciality();
+        dto.status = appointment.getStatus();
+        dto.notes = appointment.getNotes();
+        return dto;
     }
 
 }

@@ -41,7 +41,7 @@ public class SaleDTO implements Serializable {
         List<SaleItemDTO> dtos = new ArrayList<>();
         for (SaleItem item : items){
             SaleItemDTO dto = new SaleItemDTO();
-            dto.getDTOfromEntity(item);
+            dto = dto.getDTOfromEntity(item);
             dtos.add(dto);
         }
         return dtos;
