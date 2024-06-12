@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -15,11 +16,12 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class Costumer implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
-    private Long id; // Primary key, unique identifier for each customer. (Integer)
+    private Long id; // Primary key, unique identifier for each customer. (Long)
 
     private String Name; // Full name of the customer. (String)
 
