@@ -26,9 +26,16 @@ public class Appointment implements Serializable {
     private Date timestamp; // Date and time of the scheduled appointment. (Timestamp)
 
     @OneToOne
-    private Costumer costumer; // Foreign key to the patients table, identifying the scheduled patient (Costumer). (Integer)
+    private Costumer costumer; // Foreign key to the patients table, identifying the scheduled patient (Costumer). (Long)
 
+    @OneToOne
+    private Dentist dentist; // Foreign key to the dentists table, identifying the dentist responsible for the appointment. (Long)
 
+    private String speciality; // Dental specialty of the appointment (general dentistry, orthodontics, periodontics, etc.). (String)
+
+    private StatusOfAppointment status; // Status of the appointment (pending, confirmed, canceled, completed). (Enum/String)
+
+    private String notes; // Relevant notes about the appointment. (String)
 
     @Override
     public final boolean equals(Object o) {

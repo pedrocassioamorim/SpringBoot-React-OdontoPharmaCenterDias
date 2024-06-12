@@ -34,7 +34,8 @@ public class Costumer implements Serializable {
 
     private String rg; // Brazilian Identity Card (RG) number of the patient. (String)
 
-    private Gender gender; // Patient's gender (male, female, other). (Enum)
+    @Enumerated(EnumType.STRING)
+    private Gender gender; // Patient's gender (male, female, other). (Enum/String)
 
     private String address; // Complete address of the customer (street, number, neighborhood, city, state, ZIP code). (String)
 

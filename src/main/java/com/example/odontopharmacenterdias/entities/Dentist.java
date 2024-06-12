@@ -18,6 +18,9 @@ public class Dentist implements Serializable {
     @Column(nullable = false, unique = true)
     private String cro; // Brazilian Dental Council (CRO) number of the dentist. (String)
 
+    @Enumerated(EnumType.STRING)
+    private Gender gender; // Dentist's gender (male, female, other). (Enum/String)
+
     private String speciality; // Dental specialty of the dentist (general dentistry, orthodontics, periodontics, etc.). (String)
 
     @Column(name = "office_hours")

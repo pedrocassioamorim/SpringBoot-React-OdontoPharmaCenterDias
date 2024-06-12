@@ -31,7 +31,8 @@ public class Employee implements Serializable {
     @Column(unique = true, nullable = false)
     private String cpf; // Brazilian Social Security Number (CPF) of the employee. (String)
 
-    private Gender gender; // Employee's gender (male, female, other). (Enum)
+    @Enumerated(EnumType.STRING)
+    private Gender gender; // Employee's gender (male, female, other). (Enum/String)
 
     private String maritalStatus; // Employee's marital status (single, married, divorced, widowed). (String)
 
