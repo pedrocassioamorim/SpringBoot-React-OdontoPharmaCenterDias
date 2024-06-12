@@ -19,7 +19,7 @@ public class Sale implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id; // Primary key, unique identifier for each sale. (Long)
 
@@ -29,6 +29,8 @@ public class Sale implements Serializable {
     @ManyToOne
     private Costumer costumer; // Foreign key to the customers table, identifying the customer who made the purchase. (Long)
 
+    @ManyToOne
+    private Employee employee; // Foreign key to the employees table, identifying the employee who served the customer. (Long)
 
 
 

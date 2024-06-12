@@ -6,7 +6,6 @@ import org.hibernate.proxy.HibernateProxy;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -14,34 +13,24 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class Employee implements Serializable {
+public class SaleItem implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Long id; // Primary key, unique identifier for each employee. (Long)
+    private Long id;
 
-    private String name; // Full name of the employee. (String)
+    @ManyToOne
+    private Medication medication; // Foreign key to the medications table, identifying the medication sold. (Long)
 
-    private Date birthDay; // Employee's date of birth. (Date)
+    private Integer quantity; // Quantity of the medication sold. (Integer)
 
-    private String cpf; // Brazilian Social Security Number (CPF) of the employee. (String)
+    private Double unitPrice = medication.getSalePrice(); // Unit price of the medication sold. (Decimal)
 
-    private String address; //  Complete address of the employee (street, number, neighborhood, city, state, ZIP code). (String)
+    private Double totalPrice = quantity * unitPrice; // Total price of the sold item (quantity x unit price). (Decimal)
 
-    private String phone; // Employee's phone number. (String)
-
-    private String position; // Employee's position in the pharmacy (manager, pharmacist, cashier, etc.). (String)
-
-    private Date admissionDate; // Employee's admission date to the pharmacy. (Date)
-
-    private Date firingDate; // Employee's firing date to the pharmacy. (Date)
-
-    private Double salary; // Employee's salary. (Decimal)
-
-    private Boolean active; // Is currently a Employee of the pharmacy. (Boolean)
 
 
     @Override
@@ -51,8 +40,8 @@ public class Employee implements Serializable {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        Employee employee = (Employee) o;
-        return getId() != null && Objects.equals(getId(), employee.getId());
+        SaleItem saleItem = (SaleItem) o;
+        return getId() != null && Objects.equals(getId(), saleItem.getId());
     }
 
     @Override
