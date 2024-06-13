@@ -39,9 +39,7 @@ public class Sale implements Serializable {
 
     private Double discount; // Discount value applied to the sale (if applicable). (Decimal)
 
-    private Double totalAmount = items.stream()  // Total sale amount (sum of the total prices of the sale items - discount). (Decimal)
-                                .mapToDouble(SaleItem::getTotalPrice) // Convert to a DoubleStream
-                                .sum(); // Calculate the sum of the stream
+    private Double totalAmount; // Calculate the sum of the stream
 
     @Column(name = "payment_method") @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod; // Payment method used for the sale (cash, debit card, credit card, etc.). (Enum/String)

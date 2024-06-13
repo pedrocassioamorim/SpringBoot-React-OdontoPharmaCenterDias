@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+
 @Data
 public class MedicationDTO implements Serializable {
 
@@ -22,7 +23,7 @@ public class MedicationDTO implements Serializable {
     Integer minimumStock;
     Boolean popularPharmacie;
 
-    public MedicationDTO getDTOfromEntity(Medication medication){
+    public static MedicationDTO getDTOfromEntity(Medication medication){
         MedicationDTO dto = new MedicationDTO();
         dto.id = medication.getId();
         dto.name = medication.getName();

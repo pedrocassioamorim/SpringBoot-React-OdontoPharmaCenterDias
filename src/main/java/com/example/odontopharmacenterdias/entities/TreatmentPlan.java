@@ -35,9 +35,7 @@ public class TreatmentPlan implements Serializable {
     @OneToMany
     private List<Procedure> procedureList; // List of procedures included in the plan, with their respective costs. (List<Procedure>)
 
-    private Double finalCost = procedureList.stream()  // Final Cost of Treatment Plan
-                            .mapToDouble(Procedure::getCost)  // Mapping procedures and their Costs
-                            .sum(); // Getting the sum of the whole treatment.
+    private Double finalCost; // Getting the sum of the whole treatment.
 
     private String notes; // Relevant notes about the treatment plan. (String)
 

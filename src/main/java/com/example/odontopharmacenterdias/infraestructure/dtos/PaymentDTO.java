@@ -2,7 +2,8 @@ package com.example.odontopharmacenterdias.infraestructure.dtos;
 
 import com.example.odontopharmacenterdias.entities.Payment;
 import com.example.odontopharmacenterdias.entities.enums.PaymentMethod;
-import com.example.odontopharmacenterdias.entities.Procedure;
+import static com.example.odontopharmacenterdias.infraestructure.dtos.ProcedureDTO.getProcedureDTOfromEntity;
+import static com.example.odontopharmacenterdias.infraestructure.dtos.TreatmentPlanDTO.getListProcedureDTO;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -27,7 +28,7 @@ public class PaymentDTO implements Serializable {
         dto.id = payment.getId();
         dto.costumer = new CostumerDTO().getDTOfromEntity(payment.getCostumer());
         dto.treatmentPlan = new TreatmentPlanDTO().getDTOfromEntity(payment.getTreatmentPlan());
-        dto.procedureList = convertListProcedures(payment.getProcedureList());
+        dto.procedureList = getListProcedureDTO(payment.getProcedureList());
         dto.total = payment.getTotal();
         dto.paymentMethod = payment.getPaymentMethod();
         dto.paymentDate = payment.getPaymentDate();
@@ -35,14 +36,5 @@ public class PaymentDTO implements Serializable {
         return dto;
     }
 
-    public List<ProcedureDTO> convertListProcedures(List<Procedure> procedures){
-        List<ProcedureDTO> dtos = new ArrayList<>();
-        for (Procedure procedure : procedures){
-            ProcedureDTO dto = new ProcedureDTO();
-            dto = dto.getDTOfromEntity(procedure);
-            dtos.add(dto);
-        }
-        return dtos;
-    }
 
 }

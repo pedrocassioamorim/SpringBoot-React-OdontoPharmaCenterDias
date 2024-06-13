@@ -35,17 +35,18 @@ public class Payment implements Serializable {
     @ManyToMany
     private List<Procedure> procedureList; // List of procedures included in the payment (List<Procedure>)
 
-    private Double total = total(); // Total amount of the payment (Double)
+    private Double total; // Total amount of the payment (Double)
 
     @Column(name = "payment_method") @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod; // Payment method used for the service (cash, debit card, credit card, etc.). (Enum/String)
 
     private Date paymentDate; // Date the payment was made (Date)
 
-    private String paymentReceipt = generatePaymentReceipts(); // Auto generating payment receipts based on payment methods;
+    private String paymentReceipt; // Auto generating payment receipts based on payment methods;
 
     public Double total(){
         Double total = 0.0;
+        assert procedureList != null;
         for (Procedure procedure : procedureList){
             total += procedure.getCost();
         }
@@ -53,12 +54,7 @@ public class Payment implements Serializable {
     }
 
     public String generatePaymentReceipts(){
-        if (paymentMethod.equals("PIX")){
-            // Generate receipt content specific to PIX Payment
-            return "Name: " + costumer.getName() + "\n"
-                    + "Value: R$ " + total() + "\n"
-                    + " PIX RECEBIDO COM SUCESSO!";
-        } else if (paymentMethod.equals("CREDITCARD")) {
+        if (paymentMethod.equals("CREDITCARD")) {
             // Generate receipt content specific to Credit Card Payment
             return "Name: " + costumer.getName() + "\n"
                     + "Value: R$ " + total() + "\n"

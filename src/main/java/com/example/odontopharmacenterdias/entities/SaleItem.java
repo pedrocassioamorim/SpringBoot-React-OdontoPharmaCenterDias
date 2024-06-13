@@ -27,9 +27,9 @@ public class SaleItem implements Serializable {
 
     private Integer quantity; // Quantity of the medication sold. (Integer)
 
-    private Double unitPrice = medication.getSalePrice(); // Unit price of the medication sold. (Decimal)
+    private Double unitPrice; // Unit price of the medication sold. (Decimal)
 
-    private Double totalPrice = quantity * unitPrice; // Total price of the sold item (quantity x unit price). (Decimal)
+    private Double totalPrice; // Total price of the sold item (quantity x unit price). (Decimal)
 
 
 

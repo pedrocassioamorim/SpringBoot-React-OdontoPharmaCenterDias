@@ -17,11 +17,12 @@ public class ProcedureDTO implements Serializable {
     Date dateOfProcedure;
     Boolean isPaid;
 
-    public ProcedureDTO getDTOfromEntity (Procedure procedure){
+    public static ProcedureDTO getProcedureDTOfromEntity (Procedure procedure){
         ProcedureDTO dto = new ProcedureDTO();
         dto.id = procedure.getId();
         dto.name = procedure.getName();
         dto.description = procedure.getDescription();
+        dto.procedureCode = procedure.getProcedureCode();
         dto.speciality = procedure.getSpeciality();
         dto.cost = procedure.getCost();
         dto.dateOfProcedure = procedure.getDateOfProcedure();
