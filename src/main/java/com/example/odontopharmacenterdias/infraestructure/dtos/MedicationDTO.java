@@ -3,11 +3,15 @@ package com.example.odontopharmacenterdias.infraestructure.dtos;
 import com.example.odontopharmacenterdias.entities.Medication;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 
 @Data
 public class MedicationDTO implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     Long id;
     String name;

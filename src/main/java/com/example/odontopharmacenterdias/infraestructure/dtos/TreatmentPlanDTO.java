@@ -3,11 +3,18 @@ package com.example.odontopharmacenterdias.infraestructure.dtos;
 import com.example.odontopharmacenterdias.entities.Procedure;
 import com.example.odontopharmacenterdias.entities.TreatmentPlan;
 import static com.example.odontopharmacenterdias.infraestructure.dtos.ProcedureDTO.getProcedureDTOfromEntity;
+
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class TreatmentPlanDTO {
+public class TreatmentPlanDTO implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     Long id;
     CostumerDTO costumer;
     DentistDTO dentist;

@@ -5,6 +5,7 @@ import com.example.odontopharmacenterdias.entities.Sale;
 import com.example.odontopharmacenterdias.entities.SaleItem;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,6 +13,10 @@ import java.util.List;
 
 @Data
 public class SaleDTO implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     Long id;
     Date saleDate;
     CostumerDTO costumer;

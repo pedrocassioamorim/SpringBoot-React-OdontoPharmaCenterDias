@@ -4,11 +4,16 @@ import com.example.odontopharmacenterdias.entities.Employee;
 import com.example.odontopharmacenterdias.entities.enums.Gender;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
 @Data
 public class EmployeeDTO implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     Long id;
     String name;
     Date birthDay;

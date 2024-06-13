@@ -6,6 +6,7 @@ import static com.example.odontopharmacenterdias.infraestructure.dtos.ProcedureD
 import static com.example.odontopharmacenterdias.infraestructure.dtos.TreatmentPlanDTO.getListProcedureDTO;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -13,6 +14,9 @@ import java.util.List;
 
 @Data
 public class PaymentDTO implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     Long id;
     CostumerDTO costumer;

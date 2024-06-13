@@ -4,10 +4,15 @@ import com.example.odontopharmacenterdias.entities.*;
 import com.example.odontopharmacenterdias.entities.enums.StatusOfAppointment;
 import lombok.Data;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class AppointmentDTO {
+public class AppointmentDTO implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     Long id;
     Date timestamp;
