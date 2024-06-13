@@ -2,6 +2,8 @@ package com.example.odontopharmacenterdias.infraestructure.dtos;
 
 import com.example.odontopharmacenterdias.entities.Procedure;
 import com.example.odontopharmacenterdias.entities.TreatmentPlan;
+import lombok.Data;
+
 import static com.example.odontopharmacenterdias.infraestructure.dtos.ProcedureDTO.getProcedureDTOfromEntity;
 
 import java.io.Serial;
@@ -10,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Data
 public class TreatmentPlanDTO implements Serializable {
 
     @Serial
